@@ -1,0 +1,4 @@
+com\devin\interview\interceptor\TraceRequestInterceptor.class
+com\devin\interview\config\FeignRequestConfig.class
+com\devin\interview\interceptor\TraceCheckInterceptor.class
+com\devin\interview\config\GlobalWebMvcConfigurer.class

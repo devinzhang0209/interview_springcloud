@@ -1,0 +1,42 @@
+server:
+  port: 7001 #启动端口
+spring:
+  #应用名称
+  application:
+    name: eureka-server
+  #安全配置
+  security:
+    basic:
+      enabled: true
+    user:
+      name: dev
+      password: 123456
+
+#eureka配置
+eureka:
+  server:
+    #设置扫描失效服务的间隔时间
+    eviction-interval-timer-in-ms: 20000
+    enable-self-preservation: true
+  instance:
+    hostname: localhost
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+  client:
+    register-with-eureka: false  #false:不作为一个客户端注册到注册中心
+    fetch-registry: false        #为true时，可以启动，但报异常：Cannot execute request on any known server
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+# health endpoint是否必须显示全部细节。默认情况下, /actuator/health 是公开的，并且不显示细节。
+# 设置actuator开关
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
